@@ -35,6 +35,7 @@ def add_gems
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'sidekiq', '~> 6.0', '>= 6.0.7'
   gem 'whenever', '~> 1.0'
+  gem 'rack-cors'
 
   gem_group :development, :test do
     gem 'vcr', '~> 5.1'
