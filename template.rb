@@ -117,6 +117,11 @@ def auth_mode
   devise_jwt_strategy if auth == '1'
 end
 
+def copy_templates
+  directory 'app', force: true
+  directory 'config', force: true
+end
+
 # setup
 add_template_repository_to_source_path
 
@@ -126,7 +131,7 @@ add_gems
 after_bundle do
   install_devise
   auth_mode
-
+  copy_templates
   # commit all to git
   git :init
   git add: '.'
