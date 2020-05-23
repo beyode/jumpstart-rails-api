@@ -29,17 +29,16 @@ end
 
 # Gems
 def add_gems
-  gem 'devise'
-  gem 'jwt'
-  gem 'fast_json'
-  gem 'dotenv-rails'
-  gem 'sidekiq'
-  gem 'whenever'
-  gem 'mini_magik'
+  gem 'devise', '~> 4.7', '>= 4.7.1'
+  gem 'jwt', '~> 2.2', '>= 2.2.1'
+  gem 'fast_jsonapi', '~> 1.5'
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
+  gem 'sidekiq', '~> 6.0', '>= 6.0.7'
+  gem 'whenever', '~> 1.0'
 
   gem_group :development, :test do
-    gem 'guard'
-    gem 'vcr'
+    gem 'vcr', '~> 5.1'
+    gem 'foreman', '~> 0.87.1'
   end
 end
 

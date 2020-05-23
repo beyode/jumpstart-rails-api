@@ -6,14 +6,14 @@ Get started with rails 6 API easily.
 - Rails - `gem install rails`
 - Ruby - version 2.5 or higher
 
-### Createting a new application
+### Creating a new application
 ```
-rails new app_name -d postgres -m https://raw.githubusercontent.com/beyode/jumpstart-rails-api/master/template.rb --api
+rails new app_name -d postgresql -m https://raw.githubusercontent.com/beyode/jumpstart-rails-api/master/template.rb --api
 ```
 Or referene `template.rb` locally if you have cloned this repo
 
 ```
-rails new app_name -d postgres -m /path/to/jumpstart-rails-api/template.rb
+rails new app_name -d postgresql -m /path/to/jumpstart-rails-api/template.rb
 ```
 
 ### Features
