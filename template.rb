@@ -141,5 +141,5 @@ after_bundle do
   say
   say 'Application generated successfully', :blue
   say
-  say 'cd to the app to get started', :blue
+  say "cd #{app_name} to switch to app", :blue
 end
