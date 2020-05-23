@@ -111,7 +111,7 @@ def device_jwt_strategy
 end
 
 def auth_mode
-  auth = ask("Which Authenctication Method would you like to use\n
+  auth = ask("Which Authentication Method would you like to use\n
     1. Json Web Token(JWT)\n 2. Simple token auth")
   device_jwt_strategy if auth == 1
 end
