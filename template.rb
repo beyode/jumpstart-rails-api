@@ -53,7 +53,7 @@ def install_devise
             '  config.secret_key = Rails.application.credentials.secret_key_base'
 end
 
-def device_jwt_strategy
+def devise_jwt_strategy
   content = <<-RUBY
   config.warden do |manager|
   #manager.intercept_401 = false
@@ -110,9 +110,11 @@ def device_jwt_strategy
 end
 
 def auth_mode
-  auth = ask("Which Authentication Method would you like to use\n
-    1. Json Web Token(JWT)\n 2. Simple token auth")
-  device_jwt_strategy if auth == 1
+  auth = ask("\nWhich Authentication Method would you like to use\n
+    1. Json Web Token(JWT)\n
+    2. Simple token auth\n", :blue)
+
+  devise_jwt_strategy if auth == '1'
 end
 
 # setup
@@ -133,5 +135,5 @@ after_bundle do
   say
   say 'Application generated successfully', :blue
   say
-  say 'cd to the app to get started'
+  say 'cd to the app to get started', :blue
 end
