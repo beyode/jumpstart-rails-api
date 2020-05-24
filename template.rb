@@ -48,13 +48,29 @@ def install_devise
   environment "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }",
               env: 'development'
   generate :devise, 'User', 'first_name:string', 'last_name:string', 'admin:boolean'
-  route "root to: 'home#index'"
+  # route "root to: 'home#index'"
   gsub_file 'config/initializers/devise.rb',
             /  # config.secret_key = .+/,
             '  config.secret_key = Rails.application.credentials.secret_key_base'
 end
 
 def devise_jwt_strategy
+  # comment device generated routes
+  comment_lines 'config/routes.rb', 'devise_for :users'
+
+  # add custom routes
+  insert_into_file 'config/routes.rb', after: 'Rails.application.routes.draw do' do
+    "
+    namespace :api do
+      namespace :v1 do
+        resources :sessions, only:['create','destroy']
+        resources :registration, only: ['create']
+      end
+    end
+    "
+  end
+
+  # implement device strategy
   content = <<-RUBY
   config.warden do |manager|
   #manager.intercept_401 = false
@@ -67,6 +83,7 @@ def devise_jwt_strategy
   insert_into_file('config/initializers/devise.rb',
                    "#{content}\n\n", before: '# ==> Mountable engine configurations')
 
+  # add class used by strategy
   append_to_file 'config/initializers/devise.rb' do
     "
       module Devise
@@ -111,11 +128,12 @@ def devise_jwt_strategy
 end
 
 def auth_mode
-  auth = ask("\nWhich Authentication Method would you like to use\n
-    1. Json Web Token(JWT)\n
-    2. Simple token auth\n", :blue)
-
-  devise_jwt_strategy if auth == '1'
+  # auth = ask("\nWhich Authentication Method would you like to use\n
+  #   1. Json Web Token(JWT)\n
+  #   2. Simple token auth\n", :blue)
+  # devise_jwt_strategy if auth == '1'
+  say
+  devise_jwt_strategy if yes?('Use JWT instead of simple Token ?', :blue)
 end
 
 def copy_templates

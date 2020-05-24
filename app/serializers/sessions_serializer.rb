@@ -2,7 +2,7 @@
 
 class SessionsSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :email, :jwt
+  attribute :email
 
   attribute :jwt_token do |object|
     JsonWebToken.encode(sub: object.id)
