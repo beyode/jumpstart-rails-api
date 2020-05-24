@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::API
   around_action :handle_errors
 
-  def render_api_json(serializer, obj, _options = {})
+  def render_api_success(serializer, obj, _options = {})
     render json: serializer.new(obj).serializable_hash
   end
 
