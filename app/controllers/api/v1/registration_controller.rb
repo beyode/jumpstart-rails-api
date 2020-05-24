@@ -6,7 +6,7 @@ class Api::V1::RegistrationController < ApplicationController
     if user.save
       render_api_json(serializer, user)
     else
-      render_api_error(user.errors, 422)
+      render_api_error(user.errors.full_messages, 422)
     end
   end
 

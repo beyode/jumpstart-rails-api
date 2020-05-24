@@ -30,7 +30,9 @@ This template uses `fast_json` a gem from neflix which make serialization of obj
 
 ### Authentication
 __Registration__
+
 Request
+
 ```bash
 http --form POST 127.0.0.1:3000/api/v1/registration first_name='moses' last_name='gathuku' email='hello2@gathuku.com' password='secret'
 ```
@@ -56,11 +58,7 @@ Error Response
     "errors": {
         "code": 422,
         "details": [
-            {
-                "email": [
-                    "has already been taken"
-                ]
-            }
+            "Email has already been taken"
         ]
     }
 }
