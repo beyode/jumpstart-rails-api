@@ -27,3 +27,41 @@ rails new app_name -d postgresql -m /path/to/jumpstart-rails-api/template.rb
 This template uses `fast_json` a gem from neflix which make serialization of objects lightining fast.
 
 3. Foreman
+
+### Authentication
+__Registration__
+Request
+```bash
+http --form POST 127.0.0.1:3000/api/v1/registration first_name='moses' last_name='gathuku' email='hello2@gathuku.com' password='secret'
+```
+
+Sucess Response
+```json
+{
+    "data": {
+        "attributes": {
+            "email": "hello2@gathuku.com",
+            "first_name": "moses",
+            "last_name": "gathuku"
+        },
+        "id": "3",
+        "type": "registration"
+    }
+}
+```
+
+Error Response
+```json
+{
+    "errors": {
+        "code": 422,
+        "details": [
+            {
+                "email": [
+                    "has already been taken"
+                ]
+            }
+        ]
+    }
+}
+```

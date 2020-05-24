@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-class Api::V1::RegistrationController < ApplicationContoller
+class Api::V1::RegistrationController < ApplicationController
   def create
     user = User.new(register_params)
-    render_json(serializer, user) if user.save
+    if user.save
+      render_api_json(serializer, user)
+    else
+      render_api_error(user.errors, 422)
+    end
   end
 
   private
@@ -13,6 +17,6 @@ class Api::V1::RegistrationController < ApplicationContoller
   end
 
   def register_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    params.permit(:first_name, :last_name, :email, :password)
   end
 end
