@@ -110,16 +110,16 @@ def devise_jwt_strategy
     class CustomFailureApp < Devise::FailureApp
       def respond
         if request.format == :json
-          json_error_response
-        else
-          super
+          self.status = 401
+          self.content_type = 'application/json'
+          self.response_body = {
+            errors: {
+              id: :unauthorized,
+              code: '401',
+              title: i18n_message
+            }
+          }.to_json
         end
-      end
-
-      def json_error_response
-        self.status = 401
-        self.content_type = 'application/json'
-        self.response_body = [{ message: i18n_message }].to_json
       end
     end
   end
