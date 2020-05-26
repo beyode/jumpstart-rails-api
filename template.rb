@@ -61,10 +61,16 @@ def devise_jwt_strategy
   # add custom routes
   insert_into_file 'config/routes.rb', after: 'Rails.application.routes.draw do' do
     "
-    namespace :api do
+    namespace :api, defaults: { format: :json } do
       namespace :v1 do
-        resources :sessions, only:['create','destroy']
-        resources :registration, only: ['create']
+        devise_for :users, skip: :all, controllers: {
+          sessions: 'api/v1/sessions'
+        }
+        devise_scope :user do
+          resources :registration, only: ['create']
+          resources :sessions, only: %w[create destroy]
+        end
+        resources :posts
       end
     end
     "
