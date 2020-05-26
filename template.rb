@@ -120,9 +120,9 @@ def devise_jwt_strategy
           self.content_type = 'application/json'
           self.response_body = {
             errors: {
-              id: :unauthorized,
               code: '401',
-              title: i18n_message
+              title: :unauthorized,
+              detail: i18n_message
             }
           }.to_json
         end
