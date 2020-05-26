@@ -92,3 +92,13 @@ Sign In Failure
     }
 }
 ```
+__Unauthorized access response__
+```json
+{
+    "errors": {
+        "code": "401",
+        "detail": "You need to sign in or sign up before continuing.",
+        "title": "unauthorized"
+    }
+}
+```
