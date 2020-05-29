@@ -1,0 +1,30 @@
+name: TemplateTests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Ruby 2.7
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libsqlite3-dev
+          gem install rails
+
+      - name: Remove git repo
+        run: |
+          rm -rf .git
+      - name: Run tests
+        run: |
+          rake
