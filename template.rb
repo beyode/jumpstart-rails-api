@@ -154,6 +154,10 @@ def stop_spring
   run 'spring stop'
 end
 
+def install_sidekiq
+  environment 'config.active_job.queue_adapter = :sidekiq', env: development
+end
+
 # setup
 add_template_repository_to_source_path
 
@@ -163,8 +167,9 @@ add_gems
 after_bundle do
   stop_spring
   install_devise
-  auth_mode
   copy_templates
+  install_sidekiq
+  auth_mode
   # commit all to git
   git :init
   git add: '.'
