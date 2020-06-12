@@ -36,6 +36,7 @@ def add_gems
   gem 'sidekiq', '~> 6.0', '>= 6.0.7'
   gem 'whenever', '~> 1.0'
   gem 'rack-cors'
+  gem 'simple_token_authentication', '~> 1.17'
 
   gem_group :development, :test do
     gem 'vcr', '~> 5.1'
@@ -134,10 +135,8 @@ def devise_jwt_strategy
 end
 
 def device_simple_token_auth
-  gem 'simple_token_authentication', '~> 1.0'
-
   # authenticable model
-  insert_into_file 'app/models/user.rb', after: 'class User < ActiveRecord::Base' do
+  insert_into_file 'app/models/user.rb', after: 'class User < ApplicationRecord' do
     "
     acts_as_token_authenticatable
     "
@@ -148,7 +147,9 @@ def device_simple_token_auth
 
   # allow controller to handle authentication
   insert_into_file 'app/controllers/application_controller.rb', after: 'class ApplicationController < ActionController::API' do
-    'acts_as_token_authentication_handler_for User'
+    "
+    acts_as_token_authentication_handler_for User
+    "
   end
 end
 
