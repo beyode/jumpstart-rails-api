@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  # Uncomment this line if using Simple Token Auth
+  # acts_as_token_authentication_handler_for User
   around_action :handle_errors
 
   def render_api_success(serializer, obj, _options = {})
