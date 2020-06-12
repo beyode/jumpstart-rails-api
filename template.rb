@@ -150,6 +150,10 @@ def copy_templates
   directory 'config', force: true
 end
 
+def stop_spring
+  run 'spring stop'
+end
+
 # setup
 add_template_repository_to_source_path
 
@@ -157,6 +161,7 @@ add_template_repository_to_source_path
 add_gems
 
 after_bundle do
+  stop_spring
   install_devise
   auth_mode
   copy_templates
