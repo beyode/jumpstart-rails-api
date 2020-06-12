@@ -133,13 +133,32 @@ def devise_jwt_strategy
   end
 end
 
+def device_simple_token_auth
+  gem 'simple_token_authentication', '~> 1.0'
+
+  # authenticable model
+  insert_into_file 'app/models/user.rb', after: 'class User < ActiveRecord::Base' do
+    "
+    acts_as_token_authenticatable
+    "
+  end
+
+  # add token column
+  generate(:migration, 'add_authentication_token_to_users', 'authentication_token:string{30}:uniq')
+
+  # allow controller to handle authentication
+  insert_into_file 'app/controllers/application_controller.rb', after: 'class ApplicationController < ActionController::API' do
+    'acts_as_token_authentication_handler_for User'
+  end
+end
+
 def auth_mode
-  # auth = ask("\nWhich Authentication Method would you like to use\n
-  #   1. Json Web Token(JWT)\n
-  #   2. Simple token auth\n", :blue)
-  # devise_jwt_strategy if auth == '1'
   say
-  devise_jwt_strategy if yes?('Use JWT instead of simple Token ?', :blue)
+  if yes?('Use JWT instead of simple Token ?', :blue)
+    devise_jwt_strategy
+  else
+    device_simple_token_auth
+  end
 end
 
 def copy_templates
