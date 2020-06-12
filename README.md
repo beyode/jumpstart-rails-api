@@ -10,23 +10,24 @@ Get started with rails 6 API easily.
 ```
 rails new app_name -d postgresql -m https://raw.githubusercontent.com/beyode/jumpstart-rails-api/master/template.rb --api
 ```
-Or reference `template.rb` locally if you have cloned this repo
+Or reference `template.rb` locally if you have cloned this repo.
 
 ```
-rails new app_name -d postgresql -m /path/to/jumpstart-rails-api/template.rb
+rails new app_name -d postgresql -m /path/to/jumpstart-rails-api/template.rb --api
 ```
 
 ### Features
 1. Authentication
- - JWT
- - Simple Token
+ - JWT - Custom devise Strategy
+ - [Simple Token Authentication](https://github.com/gonzalo-bulnes/simple_token_authentication)
 
- All of this are used together with your favorite Authentication gem `devise`
+Both are used together with your favorite Authentication gem [devise](https://github.com/heartcombo/devise)
 
 2. Json API
-This template uses `fast_jsonapi` a gem from neflix which make serialization of objects lightining fast.
+This template uses [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) a gem from neflix which make serialization of objects lightining fast.
 
 3. Foreman
+For running multiple processes
 
 ### Authentication
 __Registration__
