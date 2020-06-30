@@ -175,7 +175,7 @@ def stop_spring
 end
 
 def install_sidekiq
-  environment 'config.active_job.queue_adapter = :sidekiq', env: development
+  environment 'config.active_job.queue_adapter = :sidekiq', env: 'development'
 end
 
 # setup
