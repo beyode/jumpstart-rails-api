@@ -71,9 +71,10 @@ def devise_jwt_strategy
           resources :registration, only: ['create']
           resources :sessions, only: %w[create destroy]
         end
-        resources :posts
+        #resources :posts
       end
     end
+    match '*unmatched' => 'application#route_not_found', via: :all
     "
   end
 
