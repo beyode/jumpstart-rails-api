@@ -103,3 +103,13 @@ __Unauthorized access response__
     }
 }
 ```
+
+__Endpoint Not found__
+```json
+{
+    "errors": {
+        "code": 404,
+        "details": "Endpoint not found"
+    }
+}
+```

@@ -27,4 +27,9 @@ class ApplicationController < ActionController::API
   rescue ActionController::ParameterMissing => e
     render_api_error(e.message, 400)
   end
+
+  def route_not_found
+    data = { errors: { code: 404, details: 'Endpoint not found' } }
+    render json: data, status: 404
+  end
 end
