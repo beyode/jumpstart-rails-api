@@ -62,16 +62,16 @@ def devise_jwt_strategy
   # add custom routes
   insert_into_file 'config/routes.rb', after: 'Rails.application.routes.draw do' do
     "
+    devise_for :users, skip: :all, controllers: {
+      sessions: 'api/v1/sessions'
+    }
+    devise_scope :user do
     namespace :api, defaults: { format: :json } do
       namespace :v1 do
-        devise_for :users, skip: :all, controllers: {
-          sessions: 'api/v1/sessions'
-        }
-        devise_scope :user do
           resources :registration, only: ['create']
           resources :sessions, only: %w[create destroy]
+          #resources :posts
         end
-        #resources :posts
       end
     end
     match '*unmatched' => 'application#route_not_found', via: :all
