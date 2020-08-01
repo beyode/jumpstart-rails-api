@@ -74,7 +74,6 @@ def devise_jwt_strategy
         end
       end
     end
-    match '*unmatched' => 'application#route_not_found', via: :all
     "
   end
 
