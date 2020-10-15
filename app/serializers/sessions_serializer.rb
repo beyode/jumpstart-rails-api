@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsSerializer
-  include FastJsonapi::ObjectSerializer
+  include JSONAPI::Serializer
   attribute :email
 
   attribute :jwt_token do |object|
