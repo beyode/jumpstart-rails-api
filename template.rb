@@ -31,7 +31,7 @@ end
 def add_gems
   gem 'devise', '~> 4.7', '>= 4.7.1'
   gem 'jwt', '~> 2.2', '>= 2.2.1'
-  gem 'fast_jsonapi', '~> 1.5'
+  gem 'jsonapi-serializer', '~> 2.1.0'
   gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
   gem 'sidekiq', '~> 6.0', '>= 6.0.7'
   gem 'whenever', '~> 1.0'
