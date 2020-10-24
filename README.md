@@ -5,6 +5,7 @@ Get started with rails 6 API easily.
 - Bundler - `gem install bundler`
 - Rails - `gem install rails`
 - Ruby - version 2.5 or higher
+- Git
 
 ### Creating a new application
 ```
@@ -22,6 +23,7 @@ rails new app_name -d postgresql -m /path/to/jumpstart-rails-api/template.rb --a
  - [Simple Token Authentication](https://github.com/gonzalo-bulnes/simple_token_authentication)
 
 Both are used together with your favorite Authentication gem [devise](https://github.com/heartcombo/devise)
+Use `INTERACTIVE=false` when running the generator to default to using JWT.
 
 2. Json API
 This template uses [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) a gem from neflix which make serialization of objects lightining fast.
