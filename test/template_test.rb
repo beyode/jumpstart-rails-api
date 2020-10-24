@@ -13,8 +13,8 @@ class TemplateTest < Minitest::Test
 
   def test_generator_succeeds
     output, _err = capture_subprocess_io do
-      system('DISABLE_SPRING=1 rails new -m template.rb test_api_app --api')
+      system('DISABLE_SPRING=1 INTERACTIVE=false rails new -m template.rb test_api_app --api')
     end
-    assert_includes output, 'Application generated successfully'
+    assert_match(/Application generated successfully/, output)
   end
 end

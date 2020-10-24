@@ -3,6 +3,9 @@
 require 'fileutils'
 require 'shellwords'
 
+DEFAULT_DEVISE_AUTH_MODE = 'devise_jwt_strategy'
+NO_QUESTIONS = ENV['INTERACTIVE'] == 'false'
+
 # Copied from: https://github.com/mattbrictson/rails-template
 # Add this template directory to source_paths so that Thor actions like
 # copy_file and template resolve against our source files. If this file was
@@ -189,14 +192,19 @@ after_bundle do
   install_devise
   copy_templates
   install_sidekiq
-  auth_mode
+  NO_QUESTIONS ? eval(DEFAULT_DEVISE_AUTH_MODE) : auth_mode
   # commit all to git
   git :init
   git add: '.'
-  git commit: %( -m 'Initial commit')
+  # git commit will fail if user.email is not configured
+  begin
+    git commit: %( -m 'Initial commit')
+  rescue Exception => e
+    puts e.message
+  end
 
   say
-  say 'Application generated successfully', :blue
+  say 'Application generated successfully', %i[blue bold]
   say
-  say "cd #{app_name} to switch to app", :blue
+  say "cd #{app_name} to switch to app", %i[blue bold]
 end
