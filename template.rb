@@ -81,7 +81,7 @@ def devise_jwt_strategy
     "
   end
 
-  # implement device strategy
+  # implement devise strategy
   content = <<-RUBY
   config.warden do |manager|
     #manager.intercept_401 = false
@@ -138,7 +138,7 @@ def devise_jwt_strategy
   end
 end
 
-def device_simple_token_auth
+def devise_simple_token_auth
   # authenticable model
   insert_into_file 'app/models/user.rb', after: 'class User < ApplicationRecord' do
     "
@@ -162,7 +162,7 @@ def auth_mode
   if yes?('Use JWT instead of simple Token? [y/n]', OUTPUT_COLOR)
     devise_jwt_strategy
   else
-    device_simple_token_auth
+    devise_simple_token_auth
   end
 end
 
