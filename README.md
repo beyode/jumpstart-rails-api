@@ -38,6 +38,8 @@ Request
 
 ```bash
 http --form POST 127.0.0.1:3000/api/v1/registration first_name='moses' last_name='gathuku' email='hello2@gathuku.com' password='secret'
+
+# curl -H "Content-Type: application/json" -d @register.json localhost:3000/api/v1/registration
 ```
 
 Registration Sucess
@@ -68,6 +70,11 @@ Registration Failure
 ```
 
 __Sign In__
+
+Request;
+```bash
+curl -H "Content-Type: application/json" -d @signin.json localhost:3000/api/v1/sessions
+```
 
 Sign In Success - Returns a JWT token
 
