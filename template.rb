@@ -5,6 +5,7 @@ require 'shellwords'
 
 DEFAULT_DEVISE_AUTH_MODE = 'devise_jwt_strategy'
 NO_QUESTIONS = ENV['INTERACTIVE'] == 'false'
+OUTPUT_COLOR = %i[blue bold].freeze
 
 # Copied from: https://github.com/mattbrictson/rails-template
 # Add this template directory to source_paths so that Thor actions like
@@ -158,7 +159,7 @@ end
 
 def auth_mode
   say
-  if yes?('Use JWT instead of simple Token ?', :blue)
+  if yes?('Use JWT instead of simple Token? [y/n]', OUTPUT_COLOR)
     devise_jwt_strategy
   else
     device_simple_token_auth
@@ -204,7 +205,7 @@ after_bundle do
   end
 
   say
-  say 'Application generated successfully', %i[blue bold]
+  say 'Application generated successfully', OUTPUT_COLOR
   say
-  say "cd #{app_name} to switch to app", %i[blue bold]
+  say "cd #{app_name} to switch to app", OUTPUT_COLOR
 end
