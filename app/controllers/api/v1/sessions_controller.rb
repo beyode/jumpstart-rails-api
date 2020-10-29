@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::SessionsController < ApplicationController
-  before_action :authenticate_user, only: ['destroy']
+  before_action :authenticate_user!, only: ['destroy']
   def create
     user = User.find_by_email(session_params[:email])
     if user&.valid_password?(session_params[:password])
