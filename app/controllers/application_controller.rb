@@ -5,8 +5,9 @@ class ApplicationController < ActionController::API
   # acts_as_token_authentication_handler_for User
   around_action :handle_errors
 
-  def render_api_success(serializer, obj, _options = {})
-    render json: serializer.new(obj).serializable_hash
+  def render_api_success(serializer, obj, options = {})
+    options = Kaminari.meta_pagination(obj, options) if defined? obj.current_page
+    render json: serializer.new(obj, options).serializable_hash
   end
 
   def render_api_error(messages, code)

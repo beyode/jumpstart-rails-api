@@ -33,6 +33,7 @@ end
 
 # Gems
 def add_gems
+  gem 'kaminari'
   gem 'devise', '~> 4.7', '>= 4.7.1'
   gem 'jwt', '~> 2.2', '>= 2.2.1'
   gem 'jsonapi-serializer', '~> 2.1.0'
