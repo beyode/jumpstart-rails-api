@@ -31,6 +31,8 @@ This template uses [jsonapi-serializer](https://github.com/jsonapi-serializer/js
 3. Foreman
 For running multiple processes
 
+4. [Kaminari](https://github.com/kaminari/kaminari) paginator
+
 ### Authentication
 __Registration__
 
